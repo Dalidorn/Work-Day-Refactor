@@ -1,14 +1,11 @@
 $(function () {
-  //declaring variables
-  var dayNow = dayjs().format("dddd, MMMM D");
   var hourNow = dayjs().hour();
   //identifying HTML elements
-  var dayEL = $("#currentDay");
   var timeBlocks = $("div.container-lg").children();
   var saveButtons = $('button').toArray();
   
   // Adds current day of the week and date to top of page.
-  dayEL.textContent = dayNow;
+  $("#currentDay").text(dayjs().format("dddd, MMMM D"));
   
   //starts iterating through each time block
   for(i = 0; i < timeBlocks.length; i++) {
