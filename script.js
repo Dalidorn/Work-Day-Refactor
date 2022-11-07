@@ -1,7 +1,7 @@
 $(function () {
   //declaring variables
   var dayNow = dayjs().format("dddd, MMMM D");
-  var hourNow = 12;
+  var hourNow = dayjs().hour();
   //identifying HTML elements
   var dayEL = $("#currentDay");
   var timeBlocks = $("div.container-lg").children();
@@ -19,7 +19,7 @@ $(function () {
     } else if (timeBlocks[i].id < hourNow) {
       timeBlocks[i].className = "row time-block past"
     } else {
-      timeBlocks[i].className = "row time-block present"
+      timeBlocks[i].className = "row time-block current"
     };
 
     //adds event listeners to each button that call the following function on click
