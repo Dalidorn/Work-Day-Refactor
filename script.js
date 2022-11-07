@@ -1,10 +1,7 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
   //declaring variables
   var dayNow = dayjs().format("dddd, MMMM D");
-  var hourNow = dayjs().hour();
+  var hourNow = 12;
   //identifying HTML elements
   var dayEL = $("#currentDay");
   var timeBlocks = $("div.container-lg").children();
@@ -22,19 +19,18 @@ $(function () {
     } else if (timeBlocks[i].id < hourNow) {
       timeBlocks[i].className = "row time-block past"
     } else {
-      timeBlocks[i].className = "row time-block current"
+      timeBlocks[i].className = "row time-block present"
     };
 
     //adds event listeners to each button that call the following function on click
     saveButtons[i].addEventListener("click", function(event){
-      //adds the innerHTML of the <textarea> next to the button to local storage with the key of the id from the div the button is in
-      localStorage.setItem(event.target.parent().id, event.target.prev().innerHTML);
+      //adds the value of the <textarea> next to the button to local storage with the key of the id from the div the button is in
+      localStorage.setItem(event.target.parentElement.id, event.target.previousElementSibling.value);
     });
 
     //loads the local storage text if it exists
     if(localStorage) {
       timeBlocks[i].children[1].innerHTML = localStorage.getItem(timeBlocks[i].id);
     };
-
   }; 
 });
